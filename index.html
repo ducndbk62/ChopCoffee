@@ -23,6 +23,22 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
 
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 14px 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #0f172a;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+    }
+
     canvas {
       background: #fff;
       border-radius: 50%;
@@ -99,7 +115,8 @@
   </style>
 </head>
 <body>
-  <h1> 🎁 Quay để nhận quà 🎁 </h1>
+  <div class="top-bar">☕ Chóp Coffee giveaway</div>
+  <h1 style="margin-top:70px;"> 🎁 Quay để nhận quà 🎁 </h1>
 
   <div class="pointer"></div>
   <canvas id="wheel" width="320" height="320"></canvas>
