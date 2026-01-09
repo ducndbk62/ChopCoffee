@@ -34,8 +34,8 @@
       height: 0;
       border-left: 14px solid transparent;
       border-right: 14px solid transparent;
-      border-bottom: 26px solid #e11d48;
-      margin-bottom: -10px;
+      border-top: 26px solid #e11d48; /* mũi tên chỉ xuống dưới */
+      margin-top: -10px;
       z-index: 10;
     }
 
@@ -83,11 +83,18 @@
   <script>
     // ====== CẤU HÌNH QUÀ ======
     const prizes = [
-      "💐 Hoa xinh",
-      "🍫 Socola",
-      "🧸 Gấu bông",
-      "💄 Son môi",
-      "👗 Váy xinh 🎁" // <-- QUÀ THẬT (luôn trúng)
+      "Lựa chọn 1",
+      "Lựa chọn 2",
+      "Lựa chọn 3",
+      "Lựa chọn 4",
+      "Lựa chọn 5",
+      "Lựa chọn 6",
+      "Lựa chọn 7",
+      "Lựa chọn 8",
+      "Lựa chọn 9",
+      "Lựa chọn 10",
+      "Lựa chọn 11",
+      "Lựa chọn 12" // <-- QUÀ THẬT (bạn chỉnh tên sau)
     ];
 
     const forcedPrizeIndex = prizes.length - 1; // luôn trúng quà cuối
@@ -116,7 +123,8 @@
         ctx.beginPath();
         ctx.moveTo(center, center);
         ctx.arc(center, center, radius, start, end);
-        ctx.fillStyle = i % 2 === 0 ? "#fde68a" : "#86efac";
+        const colors = ["#fde68a", "#86efac", "#bfdbfe"]; // 3 màu xen kẽ
+        ctx.fillStyle = colors[i % 3];
         ctx.fill();
 
         ctx.save();
