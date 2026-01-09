@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vòng quay quà bất ngờ </title>
+  <title>Vòng quay may mắn </title>
   <style>
     body {
       margin: 0;
@@ -93,6 +93,10 @@
       font-weight: 600;
       opacity: 0;
       transition: opacity 0.6s ease;
+      text-align: center;            /* căn giữa chữ */
+      padding: 0 16px;               /* cách lề 2 bên trên mobile */
+      max-width: 90vw;               /* không bị sát cạnh màn hình */
+      line-height: 1.4;
     }
 
     .result.show {
@@ -116,7 +120,7 @@
 </head>
 <body>
   <div class="top-bar">☕ Chóp Coffee giveaway</div>
-  <h1 style="margin-top:70px;"> 🎁 Quay để nhận quà 🎁 </h1>
+  <h1 style="margin-top:70px;"> 🎁 Vòng Quay May Mắn 🎁 </h1>
 
   <div class="pointer"></div>
   <canvas id="wheel" width="320" height="320"></canvas>
