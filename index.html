@@ -72,12 +72,12 @@
   </style>
 </head>
 <body>
-  <h1> Quay để nhận quà </h1>
+  <h1>🎁 Quay để nhận quà 🎁</h1>
 
   <div class="pointer"></div>
   <canvas id="wheel" width="320" height="320"></canvas>
 
-  <button id="spinBtn">Quay ngay</button>
+  <button id="spinBtn">Quay ngay ✨</button>
   <div id="result" class="result"></div>
 
   <script>
@@ -175,7 +175,7 @@
           requestAnimationFrame(animate);
         } else {
           spinning = false;
-          resultEl.textContent = " Chúc mừng! Bạn nhận được: " + prizes[forcedPrizeIndex];
+          resultEl.textContent = "🎁 Chúc mừng! Bạn nhận được: " + prizes[forcedPrizeIndex] + " 🎁";
           resultEl.classList.add("show");
         }
       }
