@@ -27,6 +27,12 @@
       background: #fff;
       border-radius: 50%;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    canvas.glow {
+      box-shadow: 0 0 0 6px rgba(59,130,246,0.35), 0 25px 50px rgba(0,0,0,0.35);
+      transform: scale(1.02);
     }
 
     .pointer {
@@ -50,6 +56,13 @@
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      animation: pulse 2.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(236,72,153,0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(236,72,153,0); }
+      100% { box-shadow: 0 0 0 0 rgba(236,72,153,0); }
     }
 
     button:disabled {
@@ -69,15 +82,31 @@
     .result.show {
       opacity: 1;
     }
+  @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 8px;
+      height: 12px;
+      background: #facc15;
+      opacity: 0.9;
+      animation: fall 2.5s linear forwards;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
-  <h1>🎁 Quay để nhận quà 🎁</h1>
+  <h1> Quay để nhận quà </h1>
 
   <div class="pointer"></div>
   <canvas id="wheel" width="320" height="320"></canvas>
 
-  <button id="spinBtn">Quay ngay ✨</button>
+  <div id="confetti"></div>
+
+  <button id="spinBtn">Quay ngay</button>
   <div id="result" class="result"></div>
 
   <script>
@@ -146,6 +175,8 @@
     drawWheel();
 
     spinBtn.onclick = () => {
+      canvas.classList.remove("glow");
+      document.getElementById("confetti").innerHTML = "";
       if (spinning) return;
       spinning = true;
       spinBtn.disabled = true;
@@ -175,13 +206,27 @@
           requestAnimationFrame(animate);
         } else {
           spinning = false;
-          resultEl.textContent = "🎁 Chúc mừng! Bạn nhận được: " + prizes[forcedPrizeIndex] + " 🎁";
+          resultEl.textContent = " Chúc mừng! Bạn nhận được: " + prizes[forcedPrizeIndex];
           resultEl.classList.add("show");
+          canvas.classList.add("glow");
+          launchConfetti();
         }
       }
 
       requestAnimationFrame(animate);
     };
+      function launchConfetti() {
+      const container = document.getElementById("confetti");
+      for (let i = 0; i < 30; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = ["#fde68a", "#86efac", "#bfdbfe"][i % 3];
+        c.style.animationDuration = 2 + Math.random() * 1.5 + "s";
+        container.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+      }
+    }
   </script>
 </body>
 </html>
