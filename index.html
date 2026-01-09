@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vòng quay may mắn </title>
+  <title>Vòng quay quà bất ngờ </title>
   <style>
     body {
       margin: 0;
@@ -120,7 +120,7 @@
 </head>
 <body>
   <div class="top-bar">☕ Chóp Coffee giveaway</div>
-  <h1 style="margin-top:70px;"> 🎁 Vòng Quay May Mắn 🎁 </h1>
+  <h1 style="margin-top:70px;"> 🎁 Quay để nhận quà 🎁 </h1>
 
   <div class="pointer"></div>
   <canvas id="wheel" width="320" height="320"></canvas>
@@ -133,18 +133,18 @@
   <script>
     // ====== CẤU HÌNH QUÀ ======
     const prizes = [
-      "Chúc bạn may mắn",
-      "Móc khóa",
-      "Chúc bạn may mắn",
-      "Một đồ uống miễn phí",
-      "Chúc bạn may mắn",
-      "Móc khóa",
-      "Chúc bạn may mắn",
-      "Gấu bông",
-      "Chúc bạn may mắn",
-      "Voucher 50% cho lần sau",
-      "Chúc bạn may mắn1",
-      "Một bó hoa"
+      "🎁 Lựa chọn 1",
+      "🎁 Lựa chọn 2",
+      "🎁 Lựa chọn 3",
+      "🎁 Lựa chọn 4",
+      "🎁 Lựa chọn 5",
+      "🎁 Lựa chọn 6",
+      "🎁 Lựa chọn 7",
+      "🎁 Lựa chọn 8",
+      "🎁 Lựa chọn 9",
+      "🎁 Lựa chọn 10",
+      "🎁 Lựa chọn 11",
+      "🎁 Lựa chọn 12"
     ];
 
     const forcedPrizeIndex = prizes.length - 1; // luôn trúng quà cuối
@@ -182,8 +182,24 @@
         ctx.rotate(start + slice / 2);
         ctx.textAlign = "right";
         ctx.fillStyle = "#1f2937";
-        ctx.font = "16px sans-serif";
-        ctx.fillText(prize, radius - 12, 6);
+        ctx.font = "14px sans-serif";
+        ctx.fillStyle = "#1f2937";
+        const maxWidth = radius - 20;
+        const words = prize.split(" ");
+        let line = "";
+        let y = 0;
+        for (let w = 0; w < words.length; w++) {
+          const testLine = line + words[w] + " ";
+          const metrics = ctx.measureText(testLine);
+          if (metrics.width > maxWidth && w > 0) {
+            ctx.fillText(line, radius - 12, y);
+            line = words[w] + " ";
+            y += 16;
+          } else {
+            line = testLine;
+          }
+        }
+        ctx.fillText(line, radius - 12, y);
         ctx.restore();
       });
 
